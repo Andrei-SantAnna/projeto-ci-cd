@@ -103,6 +103,7 @@
     </div>
   </div>
 
+  <script src="../src/index.js"></script>
   <script>
     let current = '';
     let first = null;
@@ -126,12 +127,11 @@
       }
     }
 
-    async function calculate() {
+    function calculate() {
       if (first !== null && current) {
-        const response = await fetch(`/api/soma?a=${first}&b=${current}`);
-        const data = await response.json();
-        updateDisplay(data.result);
-        current = String(data.result);
+        const result = soma(first, Number(current));
+        updateDisplay(result);
+        current = String(result);
         first = null;
         waitingForSecond = false;
       }
