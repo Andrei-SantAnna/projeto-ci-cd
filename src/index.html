@@ -41,6 +41,9 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 10px;
     }
+    .span-4 {
+      grid-column: span 4;
+    }
     button {
       padding: 20px;
       font-size: 24px;
@@ -91,15 +94,16 @@
       <button class="num" onclick="addDigit('7')">7</button>
       <button class="num" onclick="addDigit('8')">8</button>
       <button class="num" onclick="addDigit('9')">9</button>
-      <button class="op" onclick="setPlus()">+</button>
+      <button class="clear" onclick="clearCalc()">C</button>
       <button class="num" onclick="addDigit('4')">4</button>
       <button class="num" onclick="addDigit('5')">5</button>
       <button class="num" onclick="addDigit('6')">6</button>
-      <button class="equals" onclick="calculate()">=</button>
-      <button class="num" onclick="addDigit('3')">3</button>
-      <button class="num" onclick="addDigit('2')">2</button>
+      <button class="op" onclick="setPlus()">+</button>
       <button class="num" onclick="addDigit('1')">1</button>
-      <button class="num" onclick="addDigit('0')">0</button>
+      <button class="num" onclick="addDigit('2')">2</button>
+      <button class="num" onclick="addDigit('3')">3</button>
+      <button class="equals" onclick="calculate()">=</button>
+      <button class="num span-4" onclick="addDigit('0')">0</button>
     </div>
   </div>
 
@@ -137,7 +141,7 @@
       }
     }
 
-    function clear() {
+    function clearCalc() {
       current = '';
       first = null;
       waitingForSecond = false;
