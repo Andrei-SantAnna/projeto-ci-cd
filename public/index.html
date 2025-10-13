@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projeto CI/CD</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 400px; margin: 50px auto; padding: 20px; }
+    input { width: 100%; padding: 8px; margin: 8px 0; box-sizing: border-box; }
+    button { width: 100%; padding: 10px; background: #0070f3; color: white; border: none; cursor: pointer; }
+    button:hover { background: #0051cc; }
+    #result { margin-top: 20px; font-size: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Calculadora Simples</h1>
+  <input type="number" id="num1" placeholder="Primeiro número" value="2">
+  <input type="number" id="num2" placeholder="Segundo número" value="3">
+  <button onclick="calcular()">Somar</button>
+  <div id="result"></div>
+
+  <script>
+    async function calcular() {
+      const a = document.getElementById('num1').value;
+      const b = document.getElementById('num2').value;
+      const response = await fetch(`/api/soma?a=${a}&b=${b}`);
+      const data = await response.json();
+      document.getElementById('result').innerText = `Resultado: ${data.result}`;
+    }
+  </script>
+</body>
+</html>
