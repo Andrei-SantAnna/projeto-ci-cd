@@ -1,6 +1,3 @@
-// Unused variable - code smell
-var unusedVariable = 'This is never used';
-
 function soma(a, b) {
   // Console.log in production code - code smell
   console.log('Calculando soma...');
