@@ -4,6 +4,18 @@ function soma(a, b) {
   return a + b;
 }
 
+function soma2(a, b) {
+  return a + b;
+}
+
+// 🚨 Code Smell proposital para detecção pelo CodeQL:
+function executarCodigoInseguro(input) {
+  // Esta função usa 'eval()', considerada perigosa.
+  return eval(input); // <- CodeQL vai alertar aqui
+}
+
+module.exports = { soma2, executarCodigoInseguro };
+
 // Function with duplicated code
 function subtracao(a, b) {
   console.log('Calculando subtracao...');
