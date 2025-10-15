@@ -1,38 +1,34 @@
-name: CodeQL Analysis
+name: "CodeQL Analysis"
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
-  schedule:
-    - cron: '0 0 * * 0'
+    branches: [ main ]
 
 jobs:
-  analyze:
-    name: Analyze
+  codeql:
+    name: "CodeQL JavaScript Analysis"
     runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-
-    strategy:
-      fail-fast: false
-      matrix:
-        language: [ 'javascript' ]
 
     steps:
+      # 1️⃣ Fazer checkout do repositório
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
+      # 2️⃣ Inicializar CodeQL v3 com suporte a JavaScript
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-          languages: ${{ matrix.language }}
+          languages: javascript
+          packs: codeql/javascript-all  # inclui queries de qualidade e code smells
 
+      # 3️⃣ Autobuild (para JS geralmente só detecta dependências)
       - name: Autobuild
         uses: github/codeql-action/autobuild@v3
 
-      - name: Perform CodeQL Analysis
+      # 4️⃣ Rodar análise
+      - name: Run CodeQL Analysis
         uses: github/codeql-action/analyze@v3
+        with:
+          category: "security-and-quality"
