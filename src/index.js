@@ -7,18 +7,10 @@ function soma(a, b) {
   return a + b;
 }
 
-function soma2(a, b) {
-  console.log('Calculando soma...');
-
-  // ⚠️ Vulnerabilidade proposital
-  const userInput = "2 + 3";
-  eval(userInput); // <- CodeQL detecta como "Arbitrary code execution"
-
-  return a + b;
+function exemplo() {
+    let x = 10; // CodeQL detecta variável não usada
+    console.log("Hello world");
 }
-
-module.exports = soma2;
-
 
 // Function with duplicated code
 function subtracao(a, b) {
