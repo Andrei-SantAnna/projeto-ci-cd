@@ -1,6 +1,9 @@
 // Unused variable - code smell
 var unusedVariable = 'This is never used';
 
+console.log("Olá, mundo!")  // <--- isso vai dar erro por no-console
+const x = 10                 // <--- isso vai dar erro se faltar ;
+
 function soma(a, b) {
   // Console.log in production code - code smell
   console.log('Calculando soma...');
