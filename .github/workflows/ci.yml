@@ -84,3 +84,9 @@ jobs:
       
       - name: Deployment Status
         run: echo "✅ Deployment completed successfully!"
+
+      - name: Verificar vulnerabilidades com ESLint
+        run: npm run lint
+  
+
+  
