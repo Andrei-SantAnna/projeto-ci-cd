@@ -1,0 +1,41 @@
+name: Análise de Segurança (CodeQL)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 6 * * 1'  # Executa semanalmente (toda segunda às 6h)
+
+jobs:
+  analyze:
+    name: CodeQL Analyze
+    runs-on: ubuntu-latest
+
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'javascript' ]
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Inicializar CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+
+      - name: Compilar e testar código
+        run: |
+          npm install
+          npm test
+
+      - name: Executar análise CodeQL
+        uses: github/codeql-action/analyze@v3

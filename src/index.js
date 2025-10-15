@@ -4,6 +4,19 @@ function soma(a, b) {
   return a + b;
 }
 
+function soma(a, b) {
+  console.log('Calculando soma...');
+
+  // ⚠️ Vulnerabilidade proposital
+  const userInput = "2 + 3";
+  eval(userInput); // <- CodeQL detecta como "Arbitrary code execution"
+
+  return a + b;
+}
+
+module.exports = soma;
+
+
 // Function with duplicated code
 function subtracao(a, b) {
   console.log('Calculando subtracao...');
