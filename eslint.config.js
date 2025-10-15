@@ -1,14 +1,11 @@
-import { FlatCompat } from "@eslint/eslintrc";
-
-const compat = FlatCompat.fromFile(".eslintrc.json");
-
 export default [
-  // importa as regras do antigo .eslintrc.json
-  ...compat.extends("eslint:recommended"),
   {
     files: ["*.js"],
+    languageOptions: {
+      ecmaVersion: 2024,
+      sourceType: "module",
+    },
     rules: {
-      // suas regras personalizadas
       "no-console": "warn",
       "semi": ["error", "always"],
     },
