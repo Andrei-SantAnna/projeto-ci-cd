@@ -1,33 +1,29 @@
-name: Análise Estática com ESLint
+name: ESLint CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [main]
   pull_request:
-    branches: [ "main" ]
 
 jobs:
-  eslint-analysis:
-    name: Rodar ESLint (SAST)
+  lint:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📦 Checkout do repositório
-        uses: actions/checkout@v4
+      # 1️⃣ Pega o código do repositório
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
-      - name: ⚙️ Configurar Node.js
-        uses: actions/setup-node@v4
+      # 2️⃣ Configura Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: 20
 
-      - name: 📥 Instalar dependências
-        run: npm install
+      # 3️⃣ Instala dependências
+      - name: Install dependencies
+        run: npm ci
 
-      - name: 🔍 Rodar ESLint com regras de segurança
-        run: |
-          echo "Iniciando análise estática com ESLint..."
-          npx eslint src/**/*.js
-
-      - name: 📊 Publicar resultados
-        if: always()
-        run: echo "Análise concluída ✅ — veja os avisos acima."
+      # 4️⃣ Roda ESLint e força falha em qualquer warning ou erro
+      - name: Run ESLint
+        run: npx eslint src/**/*.js --max-warnings=0
